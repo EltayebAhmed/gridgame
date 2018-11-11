@@ -1,4 +1,6 @@
-from grid import GridGui
+"""This is game where the goal is to catch the opponent (black) with your player (green). You can move your player with
+ the arrow keys on your keyboard"""
+from gridgame import GridGui
 
 import random
 
