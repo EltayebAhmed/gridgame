@@ -56,11 +56,11 @@ while 1:
 
 # Game over, start animation
 g.fill("white")
+g.set_fps(6)
 selector = 0
 while 1:
     for i in range(width):
         for j in range(height):
             g.color_square((i, j), "red" if (i + j) % 2 == selector else "white")
     selector = 1 - selector
-    for i in range(5):
-        g.tick()
+    g.tick()
