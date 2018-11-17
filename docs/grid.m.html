@@ -1054,7 +1054,7 @@ table {
     <li class="mono"><a href="#grid.GridGui.fill">fill</a></li>
     <li class="mono"><a href="#grid.GridGui.get_clicks">get_clicks</a></li>
     <li class="mono"><a href="#grid.GridGui.get_currently_pressed_keys">get_currently_pressed_keys</a></li>
-    <li class="mono"><a href="#grid.GridGui.get_pressed_keys">get_pressed_keys</a></li>
+    <li class="mono"><a href="#grid.GridGui.get_key_presses">get_key_presses</a></li>
     <li class="mono"><a href="#grid.GridGui.set_fps">set_fps</a></li>
     <li class="mono"><a href="#grid.GridGui.tick">tick</a></li>
   </ul>
@@ -1082,7 +1082,7 @@ table {
     <div class="codehilite"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Pygame is not installed, attempting to install pygame, this will fail if you do not have an active internet&quot;</span><span class="o">+</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Pygame is not installed, attempting to install pygame, this will fail if you do not have an active internet &quot;</span><span class="o">+</span>
           <span class="s2">&quot;connection&quot;</span><span class="p">)</span>
     <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">subprocess</span>
     <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;pygame&quot;</span><span class="p">])</span>
@@ -1094,7 +1094,8 @@ table {
 
 <span class="k">class</span> <span class="nc">GridGui</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A Simple Interface for creating games that use 2d square grid user interfaces. This class provides support for</span>
-<span class="sd">    interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events&quot;&quot;&quot;</span>
+<span class="sd">    interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events. Recognized</span>
+<span class="sd">    color strings are: &#39;white&#39;, &#39;black&#39;, &#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;yellow&#39;, &#39;pink&#39;, &#39;purple&#39;&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimensions</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;bottom_left&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -1108,7 +1109,7 @@ table {
 <span class="sd">        `cell_size` : tuple of two integers</span>
 <span class="sd">                        The first component is the width of each individual cell in pixels. The second component is the</span>
 <span class="sd">                        height of each cell in pixels. Both width and height must be positive non zero integers</span>
-<span class="sd">                        </span>
+
 <span class="sd">        `origin` : string</span>
 <span class="sd">                    Currently has no effect. Will be documented after the feature is finished</span>
 
@@ -1146,7 +1147,7 @@ table {
                          <span class="mi">277</span><span class="p">:</span> <span class="s1">&#39;INSERT&#39;</span><span class="p">,</span> <span class="mi">106</span><span class="p">:</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="mi">107</span><span class="p">:</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="mi">257</span><span class="p">:</span> <span class="s1">&#39;KP1&#39;</span><span class="p">,</span> <span class="mi">258</span><span class="p">:</span> <span class="s1">&#39;KP2&#39;</span><span class="p">,</span> <span class="mi">259</span><span class="p">:</span> <span class="s1">&#39;KP3&#39;</span><span class="p">,</span> <span class="mi">260</span><span class="p">:</span> <span class="s1">&#39;KP4&#39;</span><span class="p">,</span> <span class="mi">261</span><span class="p">:</span> <span class="s1">&#39;KP5&#39;</span><span class="p">,</span>
                          <span class="mi">262</span><span class="p">:</span> <span class="s1">&#39;KP6&#39;</span><span class="p">,</span> <span class="mi">263</span><span class="p">:</span> <span class="s1">&#39;KP7&#39;</span><span class="p">,</span> <span class="mi">264</span><span class="p">:</span> <span class="s1">&#39;KP8&#39;</span><span class="p">,</span> <span class="mi">265</span><span class="p">:</span> <span class="s1">&#39;KP9&#39;</span><span class="p">,</span> <span class="mi">267</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">271</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">272</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">269</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span>
                          <span class="mi">268</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">266</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">270</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">108</span><span class="p">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="mi">308</span><span class="p">:</span> <span class="s1">&#39;LALT&#39;</span><span class="p">,</span> <span class="mi">323</span><span class="p">:</span> <span class="s1">&#39;LAST&#39;</span><span class="p">,</span> <span class="mi">306</span><span class="p">:</span> <span class="s1">&#39;LCTRL&#39;</span><span class="p">,</span> <span class="mi">276</span><span class="p">:</span> <span class="s1">&#39;LEFT&#39;</span><span class="p">,</span>
-                         <span class="mi">91</span><span class="p">:</span> <span class="s1">&#39;LEFTBRACKET&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">:</span> <span class="s1">&#39;LEFTPAREN&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39;LESS&#39;</span><span class="p">,</span> <span class="mi">310</span><span class="p">:</span> <span class="s1">&#39;LMETA&#39;</span><span class="p">,</span> <span class="mi">304</span><span class="p">:</span> <span class="s1">&#39;LSHIFT&#39;</span><span class="p">,</span> <span class="mi">311</span><span class="p">:</span> <span class="s1">&#39;LSUPER&#39;</span><span class="p">,</span>
+                         <span class="mi">91</span><span class="p">:</span> <span class="s1">&#39;LEFTBRACKET&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">:</span> <span class="s1">&#39;LEFTPAREN&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">:</span> <span class="s1">&#39;LESS&#39;</span><span class="p">,</span> <span class="mi">310</span><span class="p">:</span> <span class="s1">&#39;LMETA&#39;</span><span class="p">,</span> <span class="mi">304</span><span class="p">:</span> <span class="s1">&#39;LSHIFT&#39;</span><span class="p">,</span> <span class="mi">311</span><span class="p">:</span> <span class="s1">&#39;LSUPER&#39;</span><span class="p">,</span>
                          <span class="mi">109</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mi">319</span><span class="p">:</span> <span class="s1">&#39;MENU&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">:</span> <span class="s1">&#39;MINUS&#39;</span><span class="p">,</span> <span class="mi">313</span><span class="p">:</span> <span class="s1">&#39;MODE&#39;</span><span class="p">,</span> <span class="mi">110</span><span class="p">:</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">:</span> <span class="s1">&#39;NUMLOCK&#39;</span><span class="p">,</span> <span class="mi">111</span><span class="p">:</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">112</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span>
                          <span class="mi">281</span><span class="p">:</span> <span class="s1">&#39;PAGEDOWN&#39;</span><span class="p">,</span> <span class="mi">280</span><span class="p">:</span> <span class="s1">&#39;PAGEUP&#39;</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span> <span class="s1">&#39;PAUSE&#39;</span><span class="p">,</span> <span class="mi">46</span><span class="p">:</span> <span class="s1">&#39;PERIOD&#39;</span><span class="p">,</span> <span class="mi">43</span><span class="p">:</span> <span class="s1">&#39;PLUS&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">:</span> <span class="s1">&#39;POWER&#39;</span><span class="p">,</span>
                          <span class="mi">316</span><span class="p">:</span> <span class="s1">&#39;PRINT&#39;</span><span class="p">,</span> <span class="mi">113</span><span class="p">:</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="mi">63</span><span class="p">:</span> <span class="s1">&#39;QUESTION&#39;</span><span class="p">,</span> <span class="mi">39</span><span class="p">:</span> <span class="s1">&#39;QUOTE&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">:</span> <span class="s1">&#39;QUOTEDBL&#39;</span><span class="p">,</span> <span class="mi">114</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="mi">307</span><span class="p">:</span> <span class="s1">&#39;RALT&#39;</span><span class="p">,</span>
@@ -1184,12 +1185,12 @@ table {
 
     <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill the entire screen with `color`</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        </span>
+
 <span class="sd">        ----------</span>
-<span class="sd">        </span>
-<span class="sd">        `color` : string or RGB tuple of ints</span>
-<span class="sd">                  known colors strings can be found at X</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        `color` : Known color string or RGB tuple of ints</span>
+<span class="sd">                  known colors strings can be found at the beginning of the documentation of this class</span>
 <span class="sd">                  RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -1203,6 +1204,20 @@ table {
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">color_square</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Color the square `position` with color</span>
+
+
+<span class="sd">        ----------</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        `position` : Tuple pf two integers</span>
+<span class="sd">        represent the x and y coordinated of the square to be colored. Coordinated represent a single block in the</span>
+<span class="sd">        screen grid</span>
+
+<span class="sd">        `color` : Known color string or RGB tuple of ints</span>
+<span class="sd">          known colors strings can be found at the beginning of the documentation of this class</span>
+<span class="sd">          RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255&quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Position must be of type tuple and not </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">position</span><span class="p">)))</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -1219,7 +1234,7 @@ table {
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colors_table</span><span class="p">[</span><span class="n">color</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Unrecognize color </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">color</span><span class="p">)</span> <span class="o">+</span> \
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="n">f</span><span class="s2">&quot;Unrecognize color </span><span class="se">\&quot;</span><span class="s2">{color}</span><span class="se">\&quot;</span><span class="s2"> &quot;</span> <span class="p">)</span> <span class="o">+</span> \
                                  <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Known colors are RGB tuples or :&quot;</span> <span class="o">+</span> \
                                  <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colors_table</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
@@ -1232,12 +1247,25 @@ table {
         <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_screen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_cell_size</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">get_currently_pressed_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of *currently* pressed keys</span>
+
+<span class="sd">        ----------</span>
+
+<span class="sd">        `returns` : a list of keys that are currently in the down position, example: [&quot;K&quot;, &quot;UP&quot;].</span>
+<span class="sd">         &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_key_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span> <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">get_pressed_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_key_presses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of keys that have been pressed (transitioned from being up to being down) since the last time</span>
+<span class="sd">        it was called</span>
+
+<span class="sd">        ----------</span>
+
+<span class="sd">        `returns` : a list of keys that have been pressed since it was last called, example: [&quot;K&quot;, &quot;UP&quot;]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key_presses</span><span class="p">[:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_key_presses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1245,6 +1273,16 @@ table {
         <span class="k">return</span> <span class="n">keys</span>
 
     <span class="k">def</span> <span class="nf">get_clicks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of _click events_ that happened since it was last called</span>
+
+<span class="sd">       ----------</span>
+
+<span class="sd">       `returns` : a list of click events that happened since it was last called. Each click event is a tuple with two</span>
+<span class="sd">       components. The first component of each entry is a tuple of two ints, which returns contains the X and Y</span>
+<span class="sd">       coordinates of the square that was clicked on. The second component is a string which tells which mouse button</span>
+<span class="sd">       was used for the click. Possible values for the string are &quot;LEFT&quot;, &quot;RIGHT&quot;, &quot;MIDDLE&quot;. An example return for this</span>
+<span class="sd">       function is [((20, 35), &quot;LEFT&quot;), (12, &quot;RIGHT&quot;)]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
         <span class="n">clicks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clicks</span><span class="p">[:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_clicks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1267,91 +1305,6 @@ table {
 
     <span class="k">def</span> <span class="nf">_to_block_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cell_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cell_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">game1</span><span class="p">():</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">70</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">GridGui</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">set_fps</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">initial_pos</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">over</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">button</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">get_clicks</span><span class="p">():</span>
-                <span class="k">print</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="p">(</span><span class="n">initial_pos</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span> <span class="n">initial_pos</span> <span class="o">//</span> <span class="n">n</span><span class="p">)</span> <span class="ow">and</span> <span class="n">button</span> <span class="o">==</span> <span class="s2">&quot;LEFT&quot;</span><span class="p">:</span>
-                    <span class="n">over</span> <span class="o">=</span> <span class="bp">True</span>
-
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">over</span><span class="p">:</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-                <span class="n">initial_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">initial_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="o">**</span><span class="mi">2</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">color_square</span><span class="p">((</span><span class="n">initial_pos</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span> <span class="n">initial_pos</span> <span class="o">//</span> <span class="n">n</span><span class="p">),</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">game2</span><span class="p">():</span>
-        <span class="kn">import</span> <span class="nn">random</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">50</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">GridGui</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">set_fps</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-        <span class="n">player</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">opponent</span> <span class="o">=</span> <span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="n">width</span><span class="o">//</span><span class="mi">3</span><span class="p">,</span> <span class="n">width</span><span class="o">//</span><span class="mi">3</span><span class="p">),</span> <span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="n">height</span><span class="o">//</span><span class="mi">3</span><span class="p">,</span> <span class="n">height</span><span class="o">//</span><span class="mi">3</span><span class="p">))</span>
-        <span class="n">direction</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">motion_counter</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">direction_change_counter</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">color_square</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">color_square</span><span class="p">(</span><span class="n">opponent</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
-
-            <span class="c1"># If player has caught opponent then game over</span>
-            <span class="k">if</span> <span class="n">player</span> <span class="o">==</span> <span class="n">opponent</span><span class="p">:</span>
-                <span class="k">break</span>
-
-            <span class="c1"># This section of code handles the opponent motion</span>
-            <span class="n">motion_counter</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">motion_counter</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-                <span class="n">motion_counter</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">opponent</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">opponent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">opponent</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="n">opponent</span> <span class="o">=</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">max</span><span class="p">(</span><span class="n">opponent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-                    <span class="n">opponent</span> <span class="o">=</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">min</span><span class="p">(</span><span class="n">opponent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-                <span class="c1"># If opponent is at edge change direction</span>
-                <span class="k">if</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">opponent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-                    <span class="n">direction_change_counter</span> <span class="o">+=</span> <span class="mi">10</span>
-                <span class="n">direction_change_counter</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">direction_change_counter</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-                    <span class="n">direction_change_counter</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="n">direction</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-
-            <span class="c1"># This section of code moves the player</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_currently_pressed_keys</span><span class="p">()</span>
-            <span class="k">if</span> <span class="s2">&quot;UP&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
-                <span class="n">player</span> <span class="o">=</span> <span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;DOWN&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
-                <span class="n">player</span> <span class="o">=</span> <span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">min</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;LEFT&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
-                <span class="n">player</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">if</span> <span class="s2">&quot;RIGHT&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
-                <span class="n">player</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
-
-        <span class="c1">#Game over, start animation</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-        <span class="n">selector</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
-                    <span class="n">g</span><span class="o">.</span><span class="n">color_square</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),</span> <span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">selector</span> <span class="k">else</span> <span class="s2">&quot;white&quot;</span><span class="p">)</span>
-            <span class="n">selector</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">selector</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
 </pre></div>
 
   </div>
@@ -1368,13 +1321,15 @@ table {
       
   
     <div class="desc"><p>A Simple Interface for creating games that use 2d square grid user interfaces. This class provides support for
-interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events</p></div>
+interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events. Recognized
+color strings are: 'white', 'black', 'red', 'green', 'blue', 'yellow', 'pink', 'purple'</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui', this);">Show source &equiv;</a></p>
   <div id="source-grid.GridGui" class="source">
     <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">GridGui</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A Simple Interface for creating games that use 2d square grid user interfaces. This class provides support for</span>
-<span class="sd">    interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events&quot;&quot;&quot;</span>
+<span class="sd">    interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events. Recognized</span>
+<span class="sd">    color strings are: &#39;white&#39;, &#39;black&#39;, &#39;red&#39;, &#39;green&#39;, &#39;blue&#39;, &#39;yellow&#39;, &#39;pink&#39;, &#39;purple&#39;&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimensions</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;bottom_left&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -1388,7 +1343,7 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
 <span class="sd">        `cell_size` : tuple of two integers</span>
 <span class="sd">                        The first component is the width of each individual cell in pixels. The second component is the</span>
 <span class="sd">                        height of each cell in pixels. Both width and height must be positive non zero integers</span>
-<span class="sd">                        </span>
+
 <span class="sd">        `origin` : string</span>
 <span class="sd">                    Currently has no effect. Will be documented after the feature is finished</span>
 
@@ -1426,7 +1381,7 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
                          <span class="mi">277</span><span class="p">:</span> <span class="s1">&#39;INSERT&#39;</span><span class="p">,</span> <span class="mi">106</span><span class="p">:</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="mi">107</span><span class="p">:</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="mi">257</span><span class="p">:</span> <span class="s1">&#39;KP1&#39;</span><span class="p">,</span> <span class="mi">258</span><span class="p">:</span> <span class="s1">&#39;KP2&#39;</span><span class="p">,</span> <span class="mi">259</span><span class="p">:</span> <span class="s1">&#39;KP3&#39;</span><span class="p">,</span> <span class="mi">260</span><span class="p">:</span> <span class="s1">&#39;KP4&#39;</span><span class="p">,</span> <span class="mi">261</span><span class="p">:</span> <span class="s1">&#39;KP5&#39;</span><span class="p">,</span>
                          <span class="mi">262</span><span class="p">:</span> <span class="s1">&#39;KP6&#39;</span><span class="p">,</span> <span class="mi">263</span><span class="p">:</span> <span class="s1">&#39;KP7&#39;</span><span class="p">,</span> <span class="mi">264</span><span class="p">:</span> <span class="s1">&#39;KP8&#39;</span><span class="p">,</span> <span class="mi">265</span><span class="p">:</span> <span class="s1">&#39;KP9&#39;</span><span class="p">,</span> <span class="mi">267</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">271</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">272</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">269</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span>
                          <span class="mi">268</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">266</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">270</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">108</span><span class="p">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="mi">308</span><span class="p">:</span> <span class="s1">&#39;LALT&#39;</span><span class="p">,</span> <span class="mi">323</span><span class="p">:</span> <span class="s1">&#39;LAST&#39;</span><span class="p">,</span> <span class="mi">306</span><span class="p">:</span> <span class="s1">&#39;LCTRL&#39;</span><span class="p">,</span> <span class="mi">276</span><span class="p">:</span> <span class="s1">&#39;LEFT&#39;</span><span class="p">,</span>
-                         <span class="mi">91</span><span class="p">:</span> <span class="s1">&#39;LEFTBRACKET&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">:</span> <span class="s1">&#39;LEFTPAREN&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39;LESS&#39;</span><span class="p">,</span> <span class="mi">310</span><span class="p">:</span> <span class="s1">&#39;LMETA&#39;</span><span class="p">,</span> <span class="mi">304</span><span class="p">:</span> <span class="s1">&#39;LSHIFT&#39;</span><span class="p">,</span> <span class="mi">311</span><span class="p">:</span> <span class="s1">&#39;LSUPER&#39;</span><span class="p">,</span>
+                         <span class="mi">91</span><span class="p">:</span> <span class="s1">&#39;LEFTBRACKET&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">:</span> <span class="s1">&#39;LEFTPAREN&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">:</span> <span class="s1">&#39;LESS&#39;</span><span class="p">,</span> <span class="mi">310</span><span class="p">:</span> <span class="s1">&#39;LMETA&#39;</span><span class="p">,</span> <span class="mi">304</span><span class="p">:</span> <span class="s1">&#39;LSHIFT&#39;</span><span class="p">,</span> <span class="mi">311</span><span class="p">:</span> <span class="s1">&#39;LSUPER&#39;</span><span class="p">,</span>
                          <span class="mi">109</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mi">319</span><span class="p">:</span> <span class="s1">&#39;MENU&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">:</span> <span class="s1">&#39;MINUS&#39;</span><span class="p">,</span> <span class="mi">313</span><span class="p">:</span> <span class="s1">&#39;MODE&#39;</span><span class="p">,</span> <span class="mi">110</span><span class="p">:</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">:</span> <span class="s1">&#39;NUMLOCK&#39;</span><span class="p">,</span> <span class="mi">111</span><span class="p">:</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">112</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span>
                          <span class="mi">281</span><span class="p">:</span> <span class="s1">&#39;PAGEDOWN&#39;</span><span class="p">,</span> <span class="mi">280</span><span class="p">:</span> <span class="s1">&#39;PAGEUP&#39;</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span> <span class="s1">&#39;PAUSE&#39;</span><span class="p">,</span> <span class="mi">46</span><span class="p">:</span> <span class="s1">&#39;PERIOD&#39;</span><span class="p">,</span> <span class="mi">43</span><span class="p">:</span> <span class="s1">&#39;PLUS&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">:</span> <span class="s1">&#39;POWER&#39;</span><span class="p">,</span>
                          <span class="mi">316</span><span class="p">:</span> <span class="s1">&#39;PRINT&#39;</span><span class="p">,</span> <span class="mi">113</span><span class="p">:</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="mi">63</span><span class="p">:</span> <span class="s1">&#39;QUESTION&#39;</span><span class="p">,</span> <span class="mi">39</span><span class="p">:</span> <span class="s1">&#39;QUOTE&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">:</span> <span class="s1">&#39;QUOTEDBL&#39;</span><span class="p">,</span> <span class="mi">114</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="mi">307</span><span class="p">:</span> <span class="s1">&#39;RALT&#39;</span><span class="p">,</span>
@@ -1464,12 +1419,12 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
 
     <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill the entire screen with `color`</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        </span>
+
 <span class="sd">        ----------</span>
-<span class="sd">        </span>
-<span class="sd">        `color` : string or RGB tuple of ints</span>
-<span class="sd">                  known colors strings can be found at X</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        `color` : Known color string or RGB tuple of ints</span>
+<span class="sd">                  known colors strings can be found at the beginning of the documentation of this class</span>
 <span class="sd">                  RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -1483,6 +1438,20 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">color_square</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Color the square `position` with color</span>
+
+
+<span class="sd">        ----------</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        `position` : Tuple pf two integers</span>
+<span class="sd">        represent the x and y coordinated of the square to be colored. Coordinated represent a single block in the</span>
+<span class="sd">        screen grid</span>
+
+<span class="sd">        `color` : Known color string or RGB tuple of ints</span>
+<span class="sd">          known colors strings can be found at the beginning of the documentation of this class</span>
+<span class="sd">          RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255&quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Position must be of type tuple and not </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">position</span><span class="p">)))</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -1499,7 +1468,7 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colors_table</span><span class="p">[</span><span class="n">color</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Unrecognize color </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">color</span><span class="p">)</span> <span class="o">+</span> \
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="n">f</span><span class="s2">&quot;Unrecognize color </span><span class="se">\&quot;</span><span class="s2">{color}</span><span class="se">\&quot;</span><span class="s2"> &quot;</span> <span class="p">)</span> <span class="o">+</span> \
                                  <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Known colors are RGB tuples or :&quot;</span> <span class="o">+</span> \
                                  <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colors_table</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
@@ -1512,12 +1481,25 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
         <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_screen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_cell_size</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">get_currently_pressed_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of *currently* pressed keys</span>
+
+<span class="sd">        ----------</span>
+
+<span class="sd">        `returns` : a list of keys that are currently in the down position, example: [&quot;K&quot;, &quot;UP&quot;].</span>
+<span class="sd">         &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_key_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span> <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">get_pressed_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_key_presses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of keys that have been pressed (transitioned from being up to being down) since the last time</span>
+<span class="sd">        it was called</span>
+
+<span class="sd">        ----------</span>
+
+<span class="sd">        `returns` : a list of keys that have been pressed since it was last called, example: [&quot;K&quot;, &quot;UP&quot;]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key_presses</span><span class="p">[:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_key_presses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1525,6 +1507,16 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
         <span class="k">return</span> <span class="n">keys</span>
 
     <span class="k">def</span> <span class="nf">get_clicks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of _click events_ that happened since it was last called</span>
+
+<span class="sd">       ----------</span>
+
+<span class="sd">       `returns` : a list of click events that happened since it was last called. Each click event is a tuple with two</span>
+<span class="sd">       components. The first component of each entry is a tuple of two ints, which returns contains the X and Y</span>
+<span class="sd">       coordinates of the square that was clicked on. The second component is a string which tells which mouse button</span>
+<span class="sd">       was used for the click. Possible values for the string are &quot;LEFT&quot;, &quot;RIGHT&quot;, &quot;MIDDLE&quot;. An example return for this</span>
+<span class="sd">       function is [((20, 35), &quot;LEFT&quot;), (12, &quot;RIGHT&quot;)]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
         <span class="n">clicks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clicks</span><span class="p">[:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_clicks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1592,7 +1584,6 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
 <span class="sd">    `cell_size` : tuple of two integers</span>
 <span class="sd">                    The first component is the width of each individual cell in pixels. The second component is the</span>
 <span class="sd">                    height of each cell in pixels. Both width and height must be positive non zero integers</span>
-<span class="sd">                    </span>
 <span class="sd">    `origin` : string</span>
 <span class="sd">                Currently has no effect. Will be documented after the feature is finished</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1629,7 +1620,7 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
                      <span class="mi">277</span><span class="p">:</span> <span class="s1">&#39;INSERT&#39;</span><span class="p">,</span> <span class="mi">106</span><span class="p">:</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="mi">107</span><span class="p">:</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="mi">257</span><span class="p">:</span> <span class="s1">&#39;KP1&#39;</span><span class="p">,</span> <span class="mi">258</span><span class="p">:</span> <span class="s1">&#39;KP2&#39;</span><span class="p">,</span> <span class="mi">259</span><span class="p">:</span> <span class="s1">&#39;KP3&#39;</span><span class="p">,</span> <span class="mi">260</span><span class="p">:</span> <span class="s1">&#39;KP4&#39;</span><span class="p">,</span> <span class="mi">261</span><span class="p">:</span> <span class="s1">&#39;KP5&#39;</span><span class="p">,</span>
                      <span class="mi">262</span><span class="p">:</span> <span class="s1">&#39;KP6&#39;</span><span class="p">,</span> <span class="mi">263</span><span class="p">:</span> <span class="s1">&#39;KP7&#39;</span><span class="p">,</span> <span class="mi">264</span><span class="p">:</span> <span class="s1">&#39;KP8&#39;</span><span class="p">,</span> <span class="mi">265</span><span class="p">:</span> <span class="s1">&#39;KP9&#39;</span><span class="p">,</span> <span class="mi">267</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">271</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">272</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">269</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span>
                      <span class="mi">268</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">266</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">270</span><span class="p">:</span> <span class="s1">&#39;KP&#39;</span><span class="p">,</span> <span class="mi">108</span><span class="p">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="mi">308</span><span class="p">:</span> <span class="s1">&#39;LALT&#39;</span><span class="p">,</span> <span class="mi">323</span><span class="p">:</span> <span class="s1">&#39;LAST&#39;</span><span class="p">,</span> <span class="mi">306</span><span class="p">:</span> <span class="s1">&#39;LCTRL&#39;</span><span class="p">,</span> <span class="mi">276</span><span class="p">:</span> <span class="s1">&#39;LEFT&#39;</span><span class="p">,</span>
-                     <span class="mi">91</span><span class="p">:</span> <span class="s1">&#39;LEFTBRACKET&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">:</span> <span class="s1">&#39;LEFTPAREN&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39;LESS&#39;</span><span class="p">,</span> <span class="mi">310</span><span class="p">:</span> <span class="s1">&#39;LMETA&#39;</span><span class="p">,</span> <span class="mi">304</span><span class="p">:</span> <span class="s1">&#39;LSHIFT&#39;</span><span class="p">,</span> <span class="mi">311</span><span class="p">:</span> <span class="s1">&#39;LSUPER&#39;</span><span class="p">,</span>
+                     <span class="mi">91</span><span class="p">:</span> <span class="s1">&#39;LEFTBRACKET&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">:</span> <span class="s1">&#39;LEFTPAREN&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">:</span> <span class="s1">&#39;LESS&#39;</span><span class="p">,</span> <span class="mi">310</span><span class="p">:</span> <span class="s1">&#39;LMETA&#39;</span><span class="p">,</span> <span class="mi">304</span><span class="p">:</span> <span class="s1">&#39;LSHIFT&#39;</span><span class="p">,</span> <span class="mi">311</span><span class="p">:</span> <span class="s1">&#39;LSUPER&#39;</span><span class="p">,</span>
                      <span class="mi">109</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mi">319</span><span class="p">:</span> <span class="s1">&#39;MENU&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">:</span> <span class="s1">&#39;MINUS&#39;</span><span class="p">,</span> <span class="mi">313</span><span class="p">:</span> <span class="s1">&#39;MODE&#39;</span><span class="p">,</span> <span class="mi">110</span><span class="p">:</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">:</span> <span class="s1">&#39;NUMLOCK&#39;</span><span class="p">,</span> <span class="mi">111</span><span class="p">:</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">112</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span>
                      <span class="mi">281</span><span class="p">:</span> <span class="s1">&#39;PAGEDOWN&#39;</span><span class="p">,</span> <span class="mi">280</span><span class="p">:</span> <span class="s1">&#39;PAGEUP&#39;</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span> <span class="s1">&#39;PAUSE&#39;</span><span class="p">,</span> <span class="mi">46</span><span class="p">:</span> <span class="s1">&#39;PERIOD&#39;</span><span class="p">,</span> <span class="mi">43</span><span class="p">:</span> <span class="s1">&#39;PLUS&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">:</span> <span class="s1">&#39;POWER&#39;</span><span class="p">,</span>
                      <span class="mi">316</span><span class="p">:</span> <span class="s1">&#39;PRINT&#39;</span><span class="p">,</span> <span class="mi">113</span><span class="p">:</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="mi">63</span><span class="p">:</span> <span class="s1">&#39;QUESTION&#39;</span><span class="p">,</span> <span class="mi">39</span><span class="p">:</span> <span class="s1">&#39;QUOTE&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">:</span> <span class="s1">&#39;QUOTEDBL&#39;</span><span class="p">,</span> <span class="mi">114</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="mi">307</span><span class="p">:</span> <span class="s1">&#39;RALT&#39;</span><span class="p">,</span>
@@ -1653,10 +1644,28 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
 
     
   
+    <div class="desc"><p>Color the square <code>position</code> with color</p>
+<hr />
+<p>Parameters
+<code>position</code> : Tuple pf two integers
+represent the x and y coordinated of the square to be colored. Coordinated represent a single block in the
+screen grid</p>
+<p><code>color</code> : Known color string or RGB tuple of ints
+  known colors strings can be found at the beginning of the documentation of this class
+  RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui.color_square', this);">Show source &equiv;</a></p>
   <div id="source-grid.GridGui.color_square" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">color_square</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Color the square `position` with color</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    `position` : Tuple pf two integers</span>
+<span class="sd">    represent the x and y coordinated of the square to be colored. Coordinated represent a single block in the</span>
+<span class="sd">    screen grid</span>
+<span class="sd">    `color` : Known color string or RGB tuple of ints</span>
+<span class="sd">      known colors strings can be found at the beginning of the documentation of this class</span>
+<span class="sd">      RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Position must be of type tuple and not </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">position</span><span class="p">)))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -1672,7 +1681,7 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
         <span class="k">try</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colors_table</span><span class="p">[</span><span class="n">color</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s2">&quot;Unrecognize color </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">color</span><span class="p">)</span> <span class="o">+</span> \
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="n">f</span><span class="s2">&quot;Unrecognize color </span><span class="se">\&quot;</span><span class="s2">{color}</span><span class="se">\&quot;</span><span class="s2"> &quot;</span> <span class="p">)</span> <span class="o">+</span> \
                              <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Known colors are RGB tuples or :&quot;</span> <span class="o">+</span> \
                              <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colors_table</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">:</span>
@@ -1698,23 +1707,21 @@ interacting with the screen as a 2D grid of cells, as well as capturing mouse cl
 
     
   
-    <div class="desc"><p>Fill the entire screen with <code>color</code>
-Parameters</p>
+    <div class="desc"><p>Fill the entire screen with <code>color</code></p>
 <hr />
-<p><code>color</code> : string or RGB tuple of ints
-          known colors strings can be found at X
+<p>Parameters
+<code>color</code> : Known color string or RGB tuple of ints
+          known colors strings can be found at the beginning of the documentation of this class
           RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui.fill', this);">Show source &equiv;</a></p>
   <div id="source-grid.GridGui.fill" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fill the entire screen with `color`</span>
-<span class="sd">    Parameters</span>
-<span class="sd">    </span>
 <span class="sd">    ----------</span>
-<span class="sd">    </span>
-<span class="sd">    `color` : string or RGB tuple of ints</span>
-<span class="sd">              known colors strings can be found at X</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    `color` : Known color string or RGB tuple of ints</span>
+<span class="sd">              known colors strings can be found at the beginning of the documentation of this class</span>
 <span class="sd">              RGB tuples are tuples that contain 3 integers. 0 &lt;= each integer &lt;= 255&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1742,10 +1749,25 @@ Parameters</p>
 
     
   
+    <div class="desc"><p>Returns a list of <em>click events</em> that happened since it was last called</p>
+<hr />
+<p><code>returns</code> : a list of click events that happened since it was last called. Each click event is a tuple with two
+components. The first component of each entry is a tuple of two ints, which returns contains the X and Y
+coordinates of the square that was clicked on. The second component is a string which tells which mouse button
+was used for the click. Possible values for the string are "LEFT", "RIGHT", "MIDDLE". An example return for this
+function is [((20, 35), "LEFT"), (12, "RIGHT")]</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui.get_clicks', this);">Show source &equiv;</a></p>
   <div id="source-grid.GridGui.get_clicks" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_clicks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of _click events_ that happened since it was last called</span>
+<span class="sd">   ----------</span>
+<span class="sd">   `returns` : a list of click events that happened since it was last called. Each click event is a tuple with two</span>
+<span class="sd">   components. The first component of each entry is a tuple of two ints, which returns contains the X and Y</span>
+<span class="sd">   coordinates of the square that was clicked on. The second component is a string which tells which mouse button</span>
+<span class="sd">   was used for the click. Possible values for the string are &quot;LEFT&quot;, &quot;RIGHT&quot;, &quot;MIDDLE&quot;. An example return for this</span>
+<span class="sd">   function is [((20, 35), &quot;LEFT&quot;), (12, &quot;RIGHT&quot;)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
     <span class="n">clicks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clicks</span><span class="p">[:]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_clicks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1767,10 +1789,17 @@ Parameters</p>
 
     
   
+    <div class="desc"><p>Return a list of <em>currently</em> pressed keys</p>
+<hr />
+<p><code>returns</code> : a list of keys that are currently in the down position, example: ["K", "UP"].</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui.get_currently_pressed_keys', this);">Show source &equiv;</a></p>
   <div id="source-grid.GridGui.get_currently_pressed_keys" class="source">
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_currently_pressed_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of *currently* pressed keys</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `returns` : a list of keys that are currently in the down position, example: [&quot;K&quot;, &quot;UP&quot;].</span>
+<span class="sd">     &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_key_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span> <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
@@ -1784,17 +1813,26 @@ Parameters</p>
   
             
   <div class="item">
-    <div class="name def" id="grid.GridGui.get_pressed_keys">
-    <p>def <span class="ident">get_pressed_keys</span>(</p><p>self)</p>
+    <div class="name def" id="grid.GridGui.get_key_presses">
+    <p>def <span class="ident">get_key_presses</span>(</p><p>self)</p>
     </div>
     
 
     
   
+    <div class="desc"><p>Returns a list of keys that have been pressed (transitioned from being up to being down) since the last time
+it was called</p>
+<hr />
+<p><code>returns</code> : a list of keys that have been pressed since it was last called, example: ["K", "UP"]</p></div>
   <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui.get_pressed_keys', this);">Show source &equiv;</a></p>
-  <div id="source-grid.GridGui.get_pressed_keys" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_pressed_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-grid.GridGui.get_key_presses', this);">Show source &equiv;</a></p>
+  <div id="source-grid.GridGui.get_key_presses" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_key_presses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of keys that have been pressed (transitioned from being up to being down) since the last time</span>
+<span class="sd">    it was called</span>
+<span class="sd">    ----------</span>
+<span class="sd">    `returns` : a list of keys that have been pressed since it was last called, example: [&quot;K&quot;, &quot;UP&quot;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_update_state</span><span class="p">()</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key_presses</span><span class="p">[:]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_key_presses</span> <span class="o">=</span> <span class="p">[]</span>

@@ -1,7 +1,7 @@
 try:
     import pygame
 except ImportError:
-    print("Pygame is not installed, attempting to install pygame, this will fail if you do not have an active internet"+
+    print("Pygame is not installed, attempting to install pygame, this will fail if you do not have an active internet "+
           "connection")
     import sys, subprocess
     subprocess.run([sys.executable, "-m", "pip", "install", "pygame"])
@@ -13,7 +13,8 @@ except ImportError:
 
 class GridGui:
     """A Simple Interface for creating games that use 2d square grid user interfaces. This class provides support for
-    interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events"""
+    interacting with the screen as a 2D grid of cells, as well as capturing mouse clicks and keyboard events. Recognized
+    color strings are: 'white', 'black', 'red', 'green', 'blue', 'yellow', 'pink', 'purple'"""
     def __init__(self, dimensions, cell_size, origin="bottom_left"):
         """
         Parameters
@@ -107,8 +108,8 @@ class GridGui:
         ----------
 
         Parameters
-        `color` : string or RGB tuple of ints
-                  known colors strings can be found at X
+        `color` : Known color string or RGB tuple of ints
+                  known colors strings can be found at the beginning of the documentation of this class
                   RGB tuples are tuples that contain 3 integers. 0 <= each integer <= 255"""
         if isinstance(color, str):
             try:
@@ -122,6 +123,20 @@ class GridGui:
         self._update_state()
 
     def color_square(self, position, color):
+        """Color the square `position` with color
+
+
+        ----------
+
+        Parameters
+        `position` : Tuple pf two integers
+        represent the x and y coordinated of the square to be colored. Coordinated represent a single block in the
+        screen grid
+
+        `color` : Known color string or RGB tuple of ints
+          known colors strings can be found at the beginning of the documentation of this class
+          RGB tuples are tuples that contain 3 integers. 0 <= each integer <= 255"""
+
         if not isinstance(position, tuple):
             raise ValueError("Position must be of type tuple and not %s " % str(type(position)))
         if not len(position) == 2:
@@ -138,7 +153,7 @@ class GridGui:
             try:
                 color = self._colors_table[color]
             except KeyError:
-                raise ValueError(("Unrecognize color \"%s\" " % color) + \
+                raise ValueError((f"Unrecognize color \"{color}\" " ) + \
                                  "\n Known colors are RGB tuples or :" + \
                                  ",".join(self._colors_table.keys()))
 
@@ -151,12 +166,25 @@ class GridGui:
         pygame.draw.rect(self._screen, color, pygame.Rect(position[0], position[1], *self._cell_size))
 
     def get_currently_pressed_keys(self):
+        """Return a list of *currently* pressed keys
+
+        ----------
+
+        `returns` : a list of keys that are currently in the down position, example: ["K", "UP"].
+         """
         self._update_state()
         keys = pygame.key.get_pressed()
         ret = [self._key_map[i] for i in range(len(keys)) if keys[i]]
         return ret
 
-    def get_pressed_keys(self):
+    def get_key_presses(self):
+        """Returns a list of keys that have been pressed (transitioned from being up to being down) since the last time
+        it was called
+
+        ----------
+
+        `returns` : a list of keys that have been pressed since it was last called, example: ["K", "UP"]
+            """
         self._update_state()
         keys = self._key_presses[:]
         self._key_presses = []
@@ -164,6 +192,16 @@ class GridGui:
         return keys
 
     def get_clicks(self):
+        """Returns a list of _click events_ that happened since it was last called
+
+       ----------
+
+       `returns` : a list of click events that happened since it was last called. Each click event is a tuple with two
+       components. The first component of each entry is a tuple of two ints, which returns contains the X and Y
+       coordinates of the square that was clicked on. The second component is a string which tells which mouse button
+       was used for the click. Possible values for the string are "LEFT", "RIGHT", "MIDDLE". An example return for this
+       function is [((20, 35), "LEFT"), (12, "RIGHT")]
+        """
         self._update_state()
         clicks = self._clicks[:]
         self._clicks = []
