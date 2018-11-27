@@ -77,12 +77,12 @@ class GridGui:
 
     def _update_state(self):
         self._enque_events()
-        pygame.display.flip()
 
     def tick(self):
         """This function waits for time approximately equal to 1/fps. This function must be called every time after a
         full screen update has been completed"""
         self._update_state()
+        pygame.display.flip()
         self._clock.tick(self._fps)
 
     def set_fps(self, fps):
